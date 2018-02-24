@@ -1,0 +1,14 @@
+
+.alert_good {
+    color: green;
+}
+.alert_bad {
+    color: red;
+}
+
+.alert_bad,
+.alert_good {
+    position: fixed;
+    right: 30px;
+    top: 0;
+}

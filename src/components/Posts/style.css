@@ -1,0 +1,22 @@
+
+
+.post_item {
+    /* background-color: #f5f6f7; */
+    background-color: #eee;
+    padding: 10px 30px;
+    margin: 10px;
+}
+.post_item p {
+    color: #999;
+}
+
+.post_item a {
+    font-size: 12px;
+    color: red;
+}
+
+
+
+h4 {
+    color: #444;
+}
