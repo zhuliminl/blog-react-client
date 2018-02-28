@@ -11,7 +11,7 @@ export default ({...props}) => {
         <li className='post_item'>
             <h4>{ post.title }</h4>
             <p>{ post.slug }</p>
-            <Link to="/follower">阅读更多</Link>
+            <Link to={ `/p/${post.id}` }>阅读更多</Link>
         </li>
     );
 }

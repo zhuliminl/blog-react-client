@@ -5,13 +5,16 @@ import { Redirect, Route } from 'react-router-dom';
 export const PublicRoute = ({ component: Component, ...rest }) => (
     <Route
         { ...rest }
-        render={ props => (
-            localStorage.getItem('token')
-            // true                                        // 假设已经成功登录
-            // false                                        // 还没有登录
-                ? <Redirect to={{ pathname: '/'}} />
-                : <Component { ...props } />
-    )} />
+        render={
+                props => (
+                    localStorage.getItem('token')
+                        // true                                        // 假设已经成功登录
+                        // false                                        // 还没有登录
+                        ? <Redirect to={{ pathname: '/'}} />
+                        : <Component { ...props } />
+                        )
+                }
+    />
 );
 
 

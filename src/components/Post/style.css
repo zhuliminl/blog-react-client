@@ -1,0 +1,13 @@
+
+.write {
+    position: relative;
+}
+
+.write > div {
+    width: 50%;
+    display: inline-block;
+}
+
+.write_publish {
+    color: red;
+}

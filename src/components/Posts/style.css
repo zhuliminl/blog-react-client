@@ -1,7 +1,6 @@
 
 
 .post_item {
-    /* background-color: #f5f6f7; */
     background-color: #eee;
     padding: 10px 30px;
     margin: 10px;
@@ -15,8 +14,29 @@
     color: red;
 }
 
+.activity_item {
+    position: relative;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #eee;
+}
+
+.activity_item  p {
+    font-size: 13px;
+    position: absolute;
+    top: 14px;
+    left: 60px;
+}
+.activity_avatar {
+    width:30px;
+}
+.activity_avatar img {
+    border-radius: 20px;
+}
 
 
 h4 {
     color: #444;
+    padding: 0;
+    margin: 10px;;
 }

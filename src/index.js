@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './components/Auth/PrivateRoute';
 import { PublicRoute } from './components/Auth/PublicRoute';
 
@@ -18,6 +18,8 @@ import Home from './Home';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Alert from './components/Alert/Alert';
+import Write from './components/Post/Write';
+import PostDetail from './components/Post/PostDetail';
 
 
 ReactDOM.render(
@@ -25,8 +27,11 @@ ReactDOM.render(
         <div className='container'>
             <Router>
                 <Switch>
-                    <PublicRoute path='/login' component={Login} />
-                    <PublicRoute path='/register' component={Register} />
+                    <PublicRoute path='/login' component={ Login } />
+                    <PublicRoute path='/register' component={ Register } />
+                    <PrivateRoute path='/write' component={ Write } />
+                    <PrivateRoute path='/p/:id' component={ PostDetail } />
+                    <Route path='/users/:id' component={ Home } />
                     <PrivateRoute path='/' component={ Home } />
                 </Switch>
             </Router>
@@ -34,30 +39,6 @@ ReactDOM.render(
         </div>
     </Provider>
     , document.getElementById('root'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

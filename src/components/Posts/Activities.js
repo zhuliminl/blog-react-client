@@ -1,40 +1,42 @@
 import React from 'react';
 import './style.css';
-import PostsCell from './PostsCell';
 import { connect } from 'react-redux';
+import ActivitiesCell from './ActivitiesCell';
 import { postsActions } from './_actions';
-const { fetchPosts } = postsActions;
+const { fetchActivities  } = postsActions;
 
 
-class Posts extends React.Component {
+class Activities extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(fetchPosts())
+        const userId = localStorage.getItem('userId');
+        dispatch(fetchActivities(userId))
     }
     render() {
-        const { posts } = this.props;
+        const { activities } = this.props;
         return (
-            posts.length !== 0                          // 如果文章数量不为空
+            activities.length !== 0                          // 如果文章数量不为空
                 ? <ul>
                     {
-                        posts.map((post, i) => (
-                            <PostsCell
-                                key={i}
-                                post={ post }           // 文章就不在这里展开了，全都推过去
-                            />
-                        ))
+                        activities.map((activity, i) => (
+                                <ActivitiesCell
+                                    key={i}
+                                    activity={ activity }           // 文章就不在这里展开了，全都推过去
+                                />
+                            )
+                        )
                     }
                   </ul>
-                : <div>对不起，你没有文章需要被显示</div>
+                : <div>没有动态需要被显示</div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    const { posts } = state.posts;
+    const { activities } = state.posts;
     return {
-        posts
+        activities
     }
 }
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(Activities);

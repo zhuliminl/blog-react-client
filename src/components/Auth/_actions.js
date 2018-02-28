@@ -31,22 +31,25 @@ function login(email, password) {
 
                     const { message, userId } = res.data;
                     localStorage.setItem('userId', JSON.stringify(userId));                     // 用户 ID 应该本地持久化
-                    // 注意登录成功应该让后端返回更多的信息，包括用户 ID ，认证过期时间
+
+                    // 注意登录成功应该让后端返回更多的信息，包括用户 ID ，认证过期时间。这个以后完成
                     dispatch(success(
-                        {
-                            message,
-                            token,
-                            refreToken,
-                            userId
-                        }
-                    ))
+                            {
+                                message,
+                                token,
+                                refreToken,
+                                userId
+                            }
+                        )
+                    );
 
                     dispatch(flash(
-                        {
-                            alertType: 'good',
-                            message
-                        }
-                    ))
+                            {
+                                alertType: 'good',
+                                message
+                            }
+                        )
+                    );
 
 
                     // 因为调试关系，需要立即返回未登录的状态。所以在此设定定时清除 tokens
@@ -63,18 +66,22 @@ function login(email, password) {
                     const { message } = response.data;
 
                     dispatch(failure(
-                        {
-                            message
-                        }
-                    ));
+                            {
+                                message
+                            }
+                        )
+                    );
+
                     dispatch(flash(
-                        {
-                            alertType: 'bad',
-                            message
-                        }
-                    ))
+                            {
+                                alertType: 'bad',
+                                message
+                            }
+                        )
+                    );
                 }
-            })
+            }
+        );
     }
 
     function request() {
@@ -119,20 +126,25 @@ function register(newUser) {
                     const { message } = res.data;
 
                     dispatch(success(
-                        {
-                            message,
-                        }
-                    ))
+                            {
+                                message,
+                            }
+                        )
+                    );
+
                     dispatch(flash(
-                        {
-                            alertType: 'good',
-                            message
-                        }
-                    ))
+                            {
+                                alertType: 'good',
+                                message
+                            }
+                        )
+                    );
+
                     dispatch(login(
-                        newUser.email,
-                        newUser.password
-                    ));           // 记得派发后继的登录操作
+                            newUser.email,
+                            newUser.password
+                        )
+                    );           // 记得派发后继的登录操作
                 }
             })
             .catch(err => {
@@ -141,18 +153,21 @@ function register(newUser) {
                     const { message } = response.data;
 
                     dispatch(failure(
-                        {
-                            message
-                        }
-                    ));
+                            {
+                                message
+                            }
+                        )
+                    );
                     dispatch(flash(
-                        {
-                            alertType: 'bad',
-                            message
-                        }
-                    ))
+                            {
+                                alertType: 'bad',
+                                message
+                            }
+                        )
+                    );
                 }
-            })
+            }
+        );
     }
 
     function request() {
@@ -174,8 +189,6 @@ function register(newUser) {
             message: store.message
         }
     }
-
-
 }
 
 function storeTokens(res) {

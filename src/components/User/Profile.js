@@ -56,7 +56,16 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const { id, username, email, avatarHash, aboutMe, followerCount, followingCount } = state.user;
+    const {
+        id,
+        username,
+        email,
+        avatarHash,
+        aboutMe,
+        followerCount,
+        followingCount
+    } = state.user;
+
     return {
         id,
         username,

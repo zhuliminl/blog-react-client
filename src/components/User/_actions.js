@@ -5,7 +5,12 @@ import { alertActions } from '../Alert/_actions';
 const { flash } = alertActions;
 
 export const userActions = {
-    fetchUser
+    fetchUser,
+    fetchFollowings,
+    fetchFollowers,
+
+    follow,
+    unfollow,
 };
 
 function fetchUser(id) {
@@ -21,19 +26,20 @@ function fetchUser(id) {
             .catch(err => {
                 const { response } = err;
                 if(response.status === 400) {
-                    const { message } = response.data;
-                    dispatch(failure(message));
-                    dispatch(flash({ message }))
+                        const { message } = response.data;
+                        dispatch(failure(message));
+                        dispatch(flash({ message }));
+                    }
                 }
-            })
-
-
-        dispatch(flash({
-            alertType: 'good',
-            message: '正在获取用户信息'
-        }));
-    }
-
+            );
+        dispatch(flash(
+                {
+                    alertType: 'good',
+                    message: '正在获取用户信息'
+                }
+            )
+        );
+    };
 
     function request() {
         // 暂时请求中并无任何数据内容
@@ -54,3 +60,176 @@ function fetchUser(id) {
         }
     }
 }
+
+
+function fetchFollowings(id) {
+    return dispatch => {
+        dispatch(request());
+        api.get(`/users/${id}/followings`)
+            .then(res => {
+                if(res.status === 200) {
+                    const store = res.data;             // 将返回的数据全都储存在 store 上
+                    dispatch(success(store));
+                }
+            })
+            .catch(err => {
+                const { response } = err;
+                if(response.status === 400) {
+                        const { message } = response.data;
+                        dispatch(failure(message));
+                        dispatch(flash({ message }));
+                    }
+                }
+            );
+    };
+    function request() {
+        return {
+            type: userActionTypes.FETCHFOLLOWINGS
+        }
+    }
+    function success(store) {
+        return {
+            type: userActionTypes.FETCHFOLLOWINGSSUCCESS,
+            store
+        }
+    }
+    function failure(message) {
+        return {
+            type: userActionTypes.FETCHFOLLOWINGSFAILURE,
+            message
+        }
+    }
+}
+
+function fetchFollowers(id) {
+    return dispatch => {
+        dispatch(request());
+        api.get(`/users/${id}/followers`)
+            .then(res => {
+                if(res.status === 200) {
+                    const store = res.data;             // 将返回的数据全都储存在 store 上
+                    dispatch(success(store));
+                }
+            })
+            .catch(err => {
+                const { response } = err;
+                if(response.status === 400) {
+                        const { message } = response.data;
+                        dispatch(failure(message));
+                        dispatch(flash({ message }));
+                    }
+                }
+            );
+    };
+
+    function request() {
+        return {
+            type: userActionTypes.FETCHFOLLOWERS
+        }
+    }
+    function success(store) {
+        return {
+            type: userActionTypes.FETCHFOLLOWERSSUCCESS,
+            store
+        }
+    }
+    function failure(message) {
+        return {
+            type: userActionTypes.FETCHFOLLOWERSFAILURE,
+            message
+        }
+    }
+}
+
+
+function follow(userId, targetUserId) {
+    return dispatch => {
+        dispatch(request())
+        api.post(`/users/${userId}/followings/${targetUserId}`)
+            .then(res => {
+                if(res.status === 200) {
+                    const { message } = res.data;
+                    dispatch(success());
+                    dispatch(flash({
+                                alertType: 'good',
+                                message
+                            }
+                        )
+                    )
+                }
+            })
+            .catch(err => {
+                const { response } = err;
+                if(response.status === 400) {
+                        const { message } = response.data;
+                        dispatch(failure());            // 失败了，暂时就啥都不做吧。和发出请求一样，暂时保持为空
+                        dispatch(flash({ message }));   // 但是错误提示要发出来
+                    }
+                }
+            )
+    }
+
+    function request() {
+        return {
+            type: userActionTypes.FOLLOW
+        }
+    }
+    function success() {
+        return {
+            type: userActionTypes.FOLLOWSUCCESS
+        }
+    }
+    function failure() {
+        return {
+            type: userActionTypes.FOLLOWFAILURE
+        }
+    }
+
+
+}
+
+function unfollow(userId, targetUserId) {
+    return dispatch => {
+        dispatch(request())
+        api.delete(`/users/${userId}/followings/${targetUserId}`)
+            .then(res => {
+                if(res.status === 200) {
+                    const { message } = res.data;
+                    dispatch(success());
+                    dispatch(flash(                                 // 发送关注成功的提示
+                                {
+                                    alertType: 'good',
+                                    message
+                                }
+                            )
+                        );                                              }
+                }
+            )
+            .catch(err => {
+                const { response } = err;
+                if(response.status === 400) {
+                        const { message } = response.data;
+                        dispatch(failure());            // 失败了，暂时就啥都不做吧。和发出请求一样，暂时保持为空
+                        dispatch(flash({ message }));   // 但是错误提示要发出来
+                    }
+                }
+            )
+    }
+
+    function request() {
+        return {
+            type: userActionTypes.UNFOLLOW
+        }
+    }
+    function success() {
+        return {
+            type: userActionTypes.UNFOLLOWSUCCESS
+        }
+    }
+    function failure() {
+        return {
+            type: userActionTypes.UNFOLLOWFAILURE
+        }
+    }
+}
+

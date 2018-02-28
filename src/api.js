@@ -25,7 +25,7 @@ function getToken() {
 }
 
 function getRefreshToken() {
-    let refreToken = JSON.parse(localStorage.getItem('refreToken'));
+    let refreToken = JSON.parse(localStorage.getItem('refreshToken'));
     if(!refreToken) {
         return 'no refreshToken'
     }
@@ -59,5 +59,26 @@ export const api = {
                 'x-refresh-token': getRefreshToken(),
             }
         }
-    )
+    ),
+    put: (url, data) => axios.put(
+        url,
+        data,
+        {
+            headers: {
+                ...headers,
+                'x-token': getToken(),
+                'x-refresh-token': getRefreshToken(),
+            }
+        }
+    ),
+    delete: (url) => axios.delete(
+        url,
+        {
+            headers: {
+                ...headers,
+                'x-token': getToken(),                  // delete 是不是无法携带自定义头信息?
+                'x-refresh-token': getRefreshToken(),
+            }
+        }
+    ),
 }
