@@ -3,7 +3,9 @@ import { authActionTypes } from './_actionType';
 const initState = {
     isLoggingIn: false,
     isRegistering: false,
+    currentUserId: ''
 }
+
 
 export default (state = initState, action) => {
     switch(action.type) {
@@ -55,6 +57,11 @@ export default (state = initState, action) => {
             }
         // 注销动作未完成
 
+        case authActionTypes.UPDATECURRENTUSERID:
+            return {
+                ...state,
+                currentUserId: localStorage.getItem('userId')
+            }
 
         default:
             return state;

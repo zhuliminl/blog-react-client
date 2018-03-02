@@ -8,8 +8,11 @@ const { fetchFollowings } = userActions;
 
 class Followings extends React.Component {
     componentDidMount() {
-        const { dispatch } = this.props;
-        const userId  = localStorage.getItem('userId');
+        const { dispatch, match } = this.props;
+        const userId = match.params.id;
+        // console.log(this.props)
+        // const userId  = localStorage.getItem('userId');
+        // console.log(userId)
         dispatch(fetchFollowings(userId))
     }
 

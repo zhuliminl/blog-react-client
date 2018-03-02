@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './components/Auth/PrivateRoute';
 import { PublicRoute } from './components/Auth/PublicRoute';
 
@@ -31,14 +31,43 @@ ReactDOM.render(
                     <PublicRoute path='/register' component={ Register } />
                     <PrivateRoute path='/write' component={ Write } />
                     <PrivateRoute path='/p/:id' component={ PostDetail } />
-                    <Route path='/users/:id' component={ Home } />
-                    <PrivateRoute path='/' component={ Home } />
+                    <PrivateRoute path='/users/:id' component={ Home } />
+                    <PrivateRoute path='/' exact component={ Home } />
+                    {/* 如果将 / 和 /users/:id 指向相同的 Home 页面，则 / 的匹配情况下 match 数据需要按着 /users/:id 的 match 重写 */}
+                    <Redirect to='/' />
                 </Switch>
             </Router>
             <Alert/>
         </div>
     </Provider>
     , document.getElementById('root'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

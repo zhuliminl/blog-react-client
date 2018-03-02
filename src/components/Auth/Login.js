@@ -73,7 +73,7 @@ class Login extends React.Component {
     }
 
     render() {
-        const { isLoggingIn, token } = this.props;
+        const { isLoggingIn, token, userId } = this.props;
         return (
             token
                 ? <Redirect to='/' />
@@ -94,10 +94,11 @@ class Login extends React.Component {
 // 如果页面被手动刷新了，则 token 要从本地储存提取
 // 其他情况则一致从程序 state 中获取
 const mapStateToProps = (state) => {
-    const { isLoggingIn, token } = state.auth;
+    const { isLoggingIn, token, userId } = state.auth;
     return {
         isLoggingIn,
-        token
+        token,
+        userId,
     }
 }
 

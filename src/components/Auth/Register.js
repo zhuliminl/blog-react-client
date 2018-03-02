@@ -121,9 +121,10 @@ class Register extends React.Component {
     }
 
     render() {
-        const { isRegistering, token } = this.props;
+        const { isRegistering, token, userId } = this.props;
         return (
             token
+                // ? <Redirect to={`/users/${userId}`} />
                 ? <Redirect to='/' />
                 : <div>
                     <Presentation
@@ -144,10 +145,11 @@ class Register extends React.Component {
 // 如果页面被手动刷新了，则 token 要从本地储存提取
 // 其他情况则一致从程序 state 中获取
 const mapStateToProps = (state) => {
-    const { isRegistering, token } = state.auth;
+    const { isRegistering, token, userId } = state.auth;
     return {
         isRegistering,
-        token
+        token,
+        userId
     }
 }
 

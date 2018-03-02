@@ -18,7 +18,8 @@ const { flash } = alertActions;
 export const authActions = {
     login,
     logout,
-    register
+    register,
+    updateCurrentUserId
 };
 
 function login(email, password) {
@@ -200,5 +201,11 @@ function storeTokens(res) {
     return {
         token,
         refreToken
+    }
+}
+
+function updateCurrentUserId() {
+    return {
+        type: authActionTypes.UPDATECURRENTUSERID
     }
 }

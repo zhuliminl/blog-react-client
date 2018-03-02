@@ -8,12 +8,14 @@ const { fetchActivities  } = postsActions;
 
 class Activities extends React.Component {
     componentDidMount() {
-        const { dispatch } = this.props;
-        const userId = localStorage.getItem('userId');
+        const { dispatch, match } = this.props;
+        // const userId = localStorage.getItem('userId');
+        const userId = match.params.id;
         dispatch(fetchActivities(userId))
     }
     render() {
         const { activities } = this.props;
+        console.log(this.props.match.params)
         return (
             activities.length !== 0                          // 如果文章数量不为空
                 ? <ul>

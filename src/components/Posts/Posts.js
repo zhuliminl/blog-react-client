@@ -13,32 +13,44 @@ const AddPostButton = () => (
 );
 
 
+                // <AddPostButton />
+
 class Posts extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(fetchPosts())
     }
+
+    isCurrentUser() {
+        const { id, currentUserId } = this.props;
+        console.log(id, currentUserId)
+        return parseInt(currentUserId) === id;
+    }
+
     render() {
         const { posts } = this.props;
+        const isCurrentUser = this.isCurrentUser();
 
         return (
             <div>
-                <AddPostButton />
-                {
-                    posts.length !== 0                          // 如果文章数量不为空
-                        ? <ul>
-                                {
-                                    posts.map((post, i) => (
-                                            <PostsCell
-                                                key={i}
-                                                post={ post }           // 文章就不在这里展开了，全都推过去
-                                            />
+                { isCurrentUser ? <AddPostButton /> : '' }
+                <div>
+                    {
+                        posts.length !== 0                          // 如果文章数量不为空
+                            ? <ul>
+                                    {
+                                        posts.map((post, i) => (
+                                                <PostsCell
+                                                    key={i}
+                                                    post={ post }           // 文章就不在这里展开了，全都推过去
+                                                />
+                                            )
                                         )
-                                    )
-                                }
-                          </ul>
-                        : <div>对不起，你没有文章需要被显示</div>
-                }
+                                    }
+                              </ul>
+                            : <div>对不起，你没有文章需要被显示</div>
+                    }
+                </div>
             </div>
         );
     }
@@ -46,8 +58,12 @@ class Posts extends React.Component {
 
 const mapStateToProps = (state) => {
     const { posts } = state.posts;
+    const { currentUserId } = state.auth;
+    const { id } = state.user;
     return {
-        posts
+        currentUserId,
+        id,
+        posts,
     }
 }
 

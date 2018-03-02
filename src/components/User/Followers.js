@@ -8,8 +8,9 @@ const { fetchFollowers } = userActions;
 
 class Followers extends React.Component {
     componentDidMount() {
-        const { dispatch } = this.props;
-        const userId  = localStorage.getItem('userId');
+        const { dispatch, match } = this.props;
+        // const userId  = localStorage.getItem('userId');
+        const userId = match.params.id;
         dispatch(fetchFollowers(userId))
     }
 

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from './_actions';
-const { follow, unfollow } = userActions;
+const { follow, unfollow, fetchUser } = userActions;
 
 class FollowCell extends React.Component {
     constructor(props) {
@@ -13,11 +14,8 @@ class FollowCell extends React.Component {
         }
     }
 
-    // componentDidMount() {
-        // const { isFollowing } = this.props;
-    // }
 
-    handleClick() {
+    handleFollowClick() {
         const { isFollowing } = this.state;
         const { dispatch } = this.props;
 
@@ -32,20 +30,32 @@ class FollowCell extends React.Component {
         }
     }
 
+    handleAvatarClick() {
+        const { dispatch, targetUserId } = this.props;
+        dispatch(fetchUser(targetUserId))
+    }
+
+
+
 
     render() {
-        const { username, avatarHash } = this.props;
+        const { username, avatarHash, targetUserId } = this.props;
         const { isFollowing } = this.state;                 // 注意 isFolowing 必须从 state 中取过来。因为它是依据逻辑动态变化的
+
         return (
             <li className='follow_item'>
-                <div className='follow_avatar'>
+                <Link
+                    onClick={ this.handleAvatarClick.bind(this) }
+                    to={ `/users/${targetUserId}/posts` }
+                    className='follow_avatar'>
                     <img src={ 'http://secure.gravatar.com/avatar/' + avatarHash + '?s=80'  } alt="avatar"/>
-                </div>
+                </Link>
                 <p>{ username }</p>
-                <button className='follow_button' onClick={ this.handleClick.bind(this) }>{ isFollowing ? '取消关注' : '关注' }</button>
+                <button className='follow_button' onClick={ this.handleFollowClick.bind(this) }>{ isFollowing ? '取消关注' : '关注' }</button>
             </li>
         );
     }
 }
 
 export default connect(null)(FollowCell);
+                // <Link to={ `${targetUserId}/` } className='follow_avatar'>

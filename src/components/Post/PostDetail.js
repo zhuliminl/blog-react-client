@@ -3,30 +3,40 @@ import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postActions } from './_actions';
+import { authActions } from '../Auth/_actions';
 const {
     fetchPost,
     clearCurrentPost,
     deletePost,
     } = postActions;
+const { updateCurrentUserId } = authActions;
 
 
 // 导航应该包含编辑文章和删除文章的入口
 // 如果文章不是当前用户的则不能提供这个两个入口。暂时考虑不了这么多了
 // 注意这里的返回仍然要负责清除数据工作
-const Header = ({...props, isPublished}) => (
+const Header = ({...props, isPublished, isCurrentUser}) => (
     <div>
     <Link
         to='/'
         onClick={ props.handleBackClick }
         >返回</Link>
-    <Link
-        to='/write'
-        onClick={ props.handleEditorClick }
-        >编辑</Link>
-    <Link
-        to='/'
-        onClick={ props.handleDeleteClick }
-        >删除</Link>
+        {
+            isCurrentUser
+                        ?
+                            <div>
+                                <Link
+                                    to='/write'
+                                    onClick={ props.handleEditorClick }
+                                    >编辑</Link>
+                                <Link
+                                    to='/'
+                                    onClick={ props.handleDeleteClick }
+                                    >删除</Link>
+                            </div>
+                        : ''
+
+        }
     </div>
 );
 
@@ -35,6 +45,7 @@ class PostDetail extends React.Component {
     componentDidMount() {
         const { dispatch, match } = this.props;
         const postId = match.params.id;
+        dispatch(updateCurrentUserId());
         dispatch(fetchPost(postId));
     }
 
@@ -54,16 +65,24 @@ class PostDetail extends React.Component {
     // 删除文章，删除文章后进入首页(按道理说，是否进入首页应该由删除动作是否成功为依据，此处暂不考虑）
     // 后期考虑用上询问窗口
     handleDeleteClick() {
-        const { dispatch, id } = this.props;
-        dispatch(deletePost(id));
+        const { dispatch, postId } = this.props;
+        dispatch(deletePost(postId));
+    }
+
+    isCurrentUser() {
+        const { id, currentUserId } = this.props;
+        console.log(id, currentUserId)
+        return parseInt(currentUserId) === id;
     }
 
     render() {
         // const { match } = this.props;
         const { title, body, createdAt } = this.props;          // 关于时间的格式，以后在优化
+        const isCurrentUser = this.isCurrentUser();
         return (
             <div>
                 <Header
+                    isCurrentUser={ isCurrentUser }
                     handleBackClick={ this.handleBackClick.bind(this) }
                     handleEditorClick={ this.handleEditorClick.bind(this) }
                     handleDeleteClick={ this.handleDeleteClick.bind(this) }
@@ -82,8 +101,11 @@ class PostDetail extends React.Component {
 
 const mapStateToProps = (state) => {
     const { detail } = state.post;
+    const { currentUserId } = state.auth;
     return {
-        id: detail.id,
+        id: detail['author_id'],
+        currentUserId,
+        postId: detail.id,
         title: detail.title,
         body: detail.body,
         createdAt: detail.createdAt,

@@ -15,8 +15,8 @@ const PostEditor = ({...props }) => (
                 <textarea
                     onChange={ props.handleBodyChange }
                     name="body"
-                    placeholder="正文">
-                    { props.body }
+                    value={ props.body }
+                    placeholder={ props.body }>
                 </textarea>
             </div>
         </form>

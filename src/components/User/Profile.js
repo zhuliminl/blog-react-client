@@ -18,6 +18,7 @@ const Presentation = ({...props}) => (
         </div>
         <div className='profile_infor'>
             <h2>{ props.username }</h2>
+            <h2>{ props.isCurrentUser ? '你是当前用户': '' }</h2>
             <a href={ 'mailto:' + props.email }>{ props.email }</a>
             <p>{ props.aboutMe }</p>
             <div className='follow_infor'>
@@ -29,20 +30,34 @@ const Presentation = ({...props}) => (
 );
 
 class Profile extends React.Component {
-    componentWillMount() {
-        const userId  = localStorage.getItem('userId');
+    componentDidMount() {
+        // const userId  = localStorage.getItem('userId');             // 用户id 到底是应该从本地去拿还是从路由去拿呢？ URL !!!!!!!
+        const { match } = this.props;
+        const userId = match.params.id;
         this.fetchUser(userId);
     }
+
 
     fetchUser(id) {
         const { dispatch } = this.props;
         dispatch(fetchUser(id))
     }
 
+    isCurrentUser() {
+        const { id, currentUserId } = this.props;
+        return parseInt(currentUserId) === id;
+    }
+
+
     render() {
         const props = this.props;
+        // const isCurrentUser = (parseInt(props.currentUserId) === props.id);
+        const isCurrentUser = this.isCurrentUser();
+        console.log(this.props)
+        console.log(isCurrentUser)
         return (
             <Presentation
+                isCurrentUser={ isCurrentUser }
                 id={ props.id }
                 username={ props.username }
                 email={ props.email }
@@ -56,6 +71,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    const { currentUserId } = state.auth;
     const {
         id,
         username,
@@ -66,7 +82,9 @@ const mapStateToProps = (state) => {
         followingCount
     } = state.user;
 
+
     return {
+        currentUserId,
         id,
         username,
         email,
@@ -76,4 +94,6 @@ const mapStateToProps = (state) => {
         followingCount
     }
 }
+
+
 export default connect(mapStateToProps)(Profile);
