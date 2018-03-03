@@ -1,20 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import './style.css';
+
 import PostPreview from './PostPreview';
 import PostEditor from './PostEditor';
 
-import './style.css';
-import { connect } from 'react-redux';
 import { postActions } from './_actions';
 import { alertActions } from '../Alert/_actions';
-import { authActions } from '../Auth/_actions';
 const {
     addPost,
     updatePost,
     clearCurrentPost
     } = postActions;
 const { flash } = alertActions;
-const { updateCurrentUserId } = authActions;
 
 /**
  * 编辑区和预览区分开
@@ -71,10 +70,6 @@ class Write extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log('xxx')
-        this.props.dispatch(updateCurrentUserId());
-    }
 
     handleClick() {                                         // 暂时想不到更确切的名字。就用这个好了
         const { dispatch } = this.props;
@@ -107,7 +102,6 @@ class Write extends React.Component {
         const { dispatch } = this.props;
         dispatch(clearCurrentPost())
         console.log('正在清除本地的文章数据')
-
     }
 
     handleTitleChange(e) {

@@ -7,7 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { PrivateRoute } from './components/Auth/PrivateRoute';
 import { PublicRoute } from './components/Auth/PublicRoute';
 

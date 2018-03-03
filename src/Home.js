@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import './style.css';
 
 import Profile from './components/User/Profile';
@@ -43,13 +43,13 @@ class Home extends React.Component {
 
     render() {
 
-        // 注意虽然从上面代码中我们能从 store 中去拿当前登录用户的 ID，但是在初次渲染的时候，该数据总是为空。所以不能满足我们的需求
+        // 注意:虽然从上面代码中我们能从 store 中去拿当前登录用户的 ID，但是在初次渲染的时候，该数据总是为空。所以不能满足我们的需求
         // 于是只好临时从本地去取
         // 而为了保持统一，其他场景中要求一律从 store 中去取
         const currentUserId = localStorage.getItem('userId');
 
         // 为了实现首页路由为空，但是下级模块却能拿到 /users/:id 的 id 参数
-        // 需要我们手动为 / 路由追加 /users/:id 匹配模式下的 macth 信息
+        // 需要我们手动为 / 路由添加 /users/:id 匹配模式下的 macth 信息
         const match = this.isFromCurrentUser()
                         ? {
                             path: `/users/${currentUserId}`,

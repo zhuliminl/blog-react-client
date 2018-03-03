@@ -73,7 +73,8 @@ class Login extends React.Component {
     }
 
     render() {
-        const { isLoggingIn, token, userId } = this.props;
+        // const { isLoggingIn, token, userId } = this.props;
+        const { isLoggingIn, token } = this.props;
         return (
             token
                 ? <Redirect to='/' />

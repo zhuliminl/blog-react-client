@@ -45,7 +45,7 @@ class Profile extends React.Component {
 
     isCurrentUser() {
         const { id, currentUserId } = this.props;
-        return parseInt(currentUserId) === id;
+        return parseInt(currentUserId, 10) === id;
     }
 
 
@@ -53,8 +53,6 @@ class Profile extends React.Component {
         const props = this.props;
         // const isCurrentUser = (parseInt(props.currentUserId) === props.id);
         const isCurrentUser = this.isCurrentUser();
-        console.log(this.props)
-        console.log(isCurrentUser)
         return (
             <Presentation
                 isCurrentUser={ isCurrentUser }

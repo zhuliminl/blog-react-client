@@ -121,10 +121,10 @@ class Register extends React.Component {
     }
 
     render() {
-        const { isRegistering, token, userId } = this.props;
+        // const { isRegistering, token, userId } = this.props;
+        const { isRegistering, token } = this.props;
         return (
             token
-                // ? <Redirect to={`/users/${userId}`} />
                 ? <Redirect to='/' />
                 : <div>
                     <Presentation

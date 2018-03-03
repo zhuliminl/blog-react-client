@@ -15,7 +15,7 @@ const { updateCurrentUserId } = authActions;
 // 导航应该包含编辑文章和删除文章的入口
 // 如果文章不是当前用户的则不能提供这个两个入口。暂时考虑不了这么多了
 // 注意这里的返回仍然要负责清除数据工作
-const Header = ({...props, isPublished, isCurrentUser}) => (
+const Header = ({...props, isCurrentUser}) => (
     <div>
     <Link
         to='/'
@@ -45,7 +45,7 @@ class PostDetail extends React.Component {
     componentDidMount() {
         const { dispatch, match } = this.props;
         const postId = match.params.id;
-        dispatch(updateCurrentUserId());
+        dispatch(updateCurrentUserId());            // 保证页面刷新还能自动获取数据
         dispatch(fetchPost(postId));
     }
 
@@ -71,12 +71,10 @@ class PostDetail extends React.Component {
 
     isCurrentUser() {
         const { id, currentUserId } = this.props;
-        console.log(id, currentUserId)
-        return parseInt(currentUserId) === id;
+        return parseInt(currentUserId, 10) === id;
     }
 
     render() {
-        // const { match } = this.props;
         const { title, body, createdAt } = this.props;          // 关于时间的格式，以后在优化
         const isCurrentUser = this.isCurrentUser();
         return (

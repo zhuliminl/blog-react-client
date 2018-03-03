@@ -176,7 +176,7 @@ function follow(userId, targetUserId) {
     }
     function success() {
         return {
-            type: userActionTypes.FOLLOWSUCCESS
+            type: userActionTypes.FOLLOWSUCCESS,
         }
     }
     function failure() {

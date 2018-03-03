@@ -58,4 +58,3 @@ class FollowCell extends React.Component {
 }
 
 export default connect(null)(FollowCell);
-                // <Link to={ `${targetUserId}/` } className='follow_avatar'>

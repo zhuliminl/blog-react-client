@@ -9,10 +9,10 @@ export const postsActions = {
     fetchActivities,
 };
 
-function fetchPosts() {
+function fetchPosts(targetUserId) {
     return dispatch => {
         dispatch(request())
-        api.get('/posts/?slug=true')            // 默认首页的获取不包括文章的详情
+        api.get(`/posts/?user=${targetUserId}&slug=true`)            // 默认首页的获取不包括文章的详情
             .then(res => {
                 if(res.status === 200) {
                     const posts = res.data;

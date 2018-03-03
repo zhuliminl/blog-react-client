@@ -13,18 +13,16 @@ const AddPostButton = () => (
 );
 
 
-                // <AddPostButton />
-
 class Posts extends React.Component {
     componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(fetchPosts())
+        const { dispatch, match } = this.props;
+        const targetUserId = match.params.id;
+        dispatch(fetchPosts(targetUserId))
     }
 
     isCurrentUser() {
         const { id, currentUserId } = this.props;
-        console.log(id, currentUserId)
-        return parseInt(currentUserId) === id;
+        return parseInt(currentUserId, 10) === id;
     }
 
     render() {

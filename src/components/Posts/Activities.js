@@ -13,15 +13,18 @@ class Activities extends React.Component {
         const userId = match.params.id;
         dispatch(fetchActivities(userId))
     }
+    handleAvatarClick() {
+        console.log('xx')
+    }
     render() {
         const { activities } = this.props;
-        console.log(this.props.match.params)
         return (
             activities.length !== 0                          // 如果文章数量不为空
                 ? <ul>
                     {
                         activities.map((activity, i) => (
                                 <ActivitiesCell
+                                    handleAvatarClick={ this.handleAvatarClick.bind(this) }
                                     key={i}
                                     activity={ activity }           // 文章就不在这里展开了，全都推过去
                                 />

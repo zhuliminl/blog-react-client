@@ -76,7 +76,7 @@ export const api = {
         {
             headers: {
                 ...headers,
-                'x-token': getToken(),                  // delete 是不是无法携带自定义头信息?
+                'x-token': getToken(),
                 'x-refresh-token': getRefreshToken(),
             }
         }

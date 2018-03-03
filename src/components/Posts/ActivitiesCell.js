@@ -15,7 +15,7 @@ export default ({...props}) => {
                 </Link>
             </div>
             <p>{ activity.author }<span>发布了文章</span></p>
-            <Link to={ '/p/' + activity.postId }>
+            <Link to={ '/p/' + activity.postId } onClick={ props.handleAvatarClick }>
                 <h4>{ activity.title }</h4>
             </Link>
         </li>
