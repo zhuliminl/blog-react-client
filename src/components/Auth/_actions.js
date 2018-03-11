@@ -25,7 +25,7 @@ export const authActions = {
 function login(email, password) {
     return dispatch => {
         dispatch(request());
-        api.post('/login', { email, password })
+        api.post('/api/login', { email, password })
             .then(res => {
                 if(res.status === 200) {
                     const { token, refreToken } = storeTokens(res);               // 本地储存 tokens
@@ -121,7 +121,7 @@ function register(newUser) {
     return dispatch => {
         dispatch(request());
 
-        api.post('/register', newUser)
+        api.post('/api/register', newUser)
             .then(res => {
                 if(res.status === 200) {                                        // 注册成功，应该在发出提示消息之后自动登录
                     const { message } = res.data;

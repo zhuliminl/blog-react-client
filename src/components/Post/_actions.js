@@ -24,7 +24,7 @@ function fetchPost(id) {
             )
         );
 
-        api.get(`/posts/${id}`)
+        api.get(`/api/posts/${id}`)
             .then(res => {
                 if(res.status === 200) {
                     const store = res.data;             // 将返回的数据全都储存在 store 上
@@ -74,7 +74,7 @@ function addPost(title, body) {
             )
         );
 
-        api.post(`/posts/`, { title, article: body })           // 后端因为很多原因用的是 article 来命名文章的正文
+        api.post(`/api/posts/`, { title, article: body })           // 后端因为很多原因用的是 article 来命名文章的正文
             .then(res => {
                 if(res.status === 200) {
                     const store = res.data;                     // 将返回的数据全都储存在 store 上
@@ -126,7 +126,7 @@ function updatePost(id, title, body) {
             )
         );
 
-        api.put(`/posts/${id}`, { title, article: body })
+        api.put(`/api/posts/${id}`, { title, article: body })
             .then(res => {
                 if(res.status === 200) {
                     const { message } = res.data;
@@ -175,7 +175,7 @@ function updatePost(id, title, body) {
 function deletePost(id) {
     return dispatch => {
         dispatch(request());
-        api.delete(`/posts/${id}`)
+        api.delete(`/api/posts/${id}`)
             .then(res => {
                 if(res.status === 200) {
                     const { message } = res.data;             // 将返回的数据全都储存在 store 上

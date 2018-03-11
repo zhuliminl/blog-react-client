@@ -16,7 +16,7 @@ export const userActions = {
 function fetchUser(id) {
     return dispatch => {
         dispatch(request());
-        api.get(`/users/${id}`)
+        api.get(`/api/users/${id}`)
             .then(res => {
                 if(res.status === 200) {
                     const store = res.data;             // 将返回的数据全都储存在 store 上
@@ -65,7 +65,7 @@ function fetchUser(id) {
 function fetchFollowings(id) {
     return dispatch => {
         dispatch(request());
-        api.get(`/users/${id}/followings`)
+        api.get(`/api/users/${id}/followings`)
             .then(res => {
                 if(res.status === 200) {
                     const store = res.data;             // 将返回的数据全都储存在 store 上
@@ -104,7 +104,7 @@ function fetchFollowings(id) {
 function fetchFollowers(id) {
     return dispatch => {
         dispatch(request());
-        api.get(`/users/${id}/followers`)
+        api.get(`/api/users/${id}/followers`)
             .then(res => {
                 if(res.status === 200) {
                     const store = res.data;             // 将返回的数据全都储存在 store 上
@@ -145,7 +145,7 @@ function fetchFollowers(id) {
 function follow(userId, targetUserId, isFromProfile) {
     return dispatch => {
         dispatch(request())
-        api.post(`/users/${userId}/followings/${targetUserId}`)
+        api.post(`/api/users/${userId}/followings/${targetUserId}`)
             .then(res => {
                 if(res.status === 200) {
                     const { message } = res.data;
@@ -193,7 +193,7 @@ function follow(userId, targetUserId, isFromProfile) {
 function unfollow(userId, targetUserId, isFromProfile) {
     return dispatch => {
         dispatch(request())
-        api.delete(`/users/${userId}/followings/${targetUserId}`)
+        api.delete(`/api/users/${userId}/followings/${targetUserId}`)
             .then(res => {
                 if(res.status === 200) {
                     const { message } = res.data;

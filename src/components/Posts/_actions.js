@@ -12,7 +12,7 @@ export const postsActions = {
 function fetchPosts(targetUserId) {
     return dispatch => {
         dispatch(request())
-        api.get(`/posts/?user=${targetUserId}&slug=true`)            // 默认首页的获取不包括文章的详情
+        api.get(`/api/posts/?user=${targetUserId}&slug=true`)            // 默认首页的获取不包括文章的详情
             .then(res => {
                 if(res.status === 200) {
                     const posts = res.data;
@@ -60,7 +60,7 @@ function fetchPosts(targetUserId) {
 function fetchActivities(userId) {
     return dispatch => {
         dispatch(request())
-        api.get(`/users/${userId}/activities/`)            // 默认首页的获取不包括文章的详情
+        api.get(`/api/users/${userId}/activities/`)            // 默认首页的获取不包括文章的详情
             .then(res => {
                 if(res.status === 200) {
                     const activities = res.data;
