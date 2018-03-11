@@ -1,33 +1,126 @@
 .profile {
-
-}
-
-.profile_avatar {
-    width: 100px;
-}
-
-.follow_item {
-    position: relative;
-    padding: 2px 20px;
-    margin: 10px;
-}
-.follow_item p {
-    padding-left: 50px;
-}
-
-.follow_avatar {
+  position: relative;
+  padding: 6rem;
+  color: #999; }
+  .profile::after {
     position: absolute;
-}
-
-.follow_avatar img {
-    width: 40px;
-    border-radius: 50%;
-}
-
-.follow_button {
+    left: 50%;
+    bottom: 2rem;
+    content: '';
+    width: 90%;
+    transform: translate(-50%, 0);
+    height: .1rem;
+    background-color: #ddd;
+    border-radius: .2rem; }
+  .profile__avatar {
     position: absolute;
-    right: 500px;
-    top: 20px;
+    top: 5rem;
+    right: 7rem;
+    width: 16rem; }
+    .profile__avatar img {
+      border-radius: 50%;
+      box-shadow: #333; }
+  .profile__aboutme {
+    margin-bottom: 5rem;
+    font-size: 2rem; }
+  .profile__username {
+    margin-bottom: 3rem;
+    font-size: 5rem;
+    color: #444; }
+  .profile__email {
+    display: block;
+    margin-bottom: 1rem; }
+  .profile__follow-infor p {
+    display: inline-block;
+    margin-right: 3rem; }
+  .profile__follow-btn, .profile .logout-btn {
+    position: absolute;
+    bottom: 6rem;
+    right: 15rem;
+    padding: 1rem 3rem;
+    background-color: #FF655C;
+    color: #fff;
+    border-radius: 5rem;
+    transform: translate(50%, 0); }
+    .profile__follow-btn:focus, .profile .logout-btn:focus {
+      outline: none; }
+    .profile__follow-btn_followed, .profile .logout-btn_followed {
+      color: #999;
+      background-color: inherit;
+      border: 1px solid #ddd; }
+  .profile .logout-btn {
+    color: #999;
+    background-color: inherit;
+    border: 1px solid #ddd; }
+
+@media screen and (max-width: 1000px) {
+  .profile {
+    padding: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem; }
+    .profile__avatar {
+      width: 8rem;
+      top: 2rem;
+      right: 2rem; }
+    .profile__username {
+      font-size: 3rem;
+      margin-bottom: 1rem; }
+    .profile__aboutme {
+      margin-bottom: 3rem;
+      font-size: 1.4rem; }
+    .profile__avatar {
+      top: 3rem; }
+    .profile__follow-btn, .profile .logout-btn {
+      padding: .4rem 1rem;
+      right: 6rem;
+      bottom: 4rem; } }
+
+.follow__item {
+  position: relative;
+  padding: 1rem 3rem;
+  padding-left: 10rem;
+  margin-bottom: 1rem;
+  border-radius: .6rem;
+  color: #666; }
+  .follow__item:hover {
+    transition: all 1s ease;
+    background-color: #eee; }
+
+.follow__avatar {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 6rem; }
+  .follow__avatar img {
+    width: 5rem;
+    border-radius: 50%; }
+
+.follow__username {
+  padding: 3rem;
+  font-size: 1.6rem; }
+
+.follow .follow-btn {
+  position: absolute;
+  right: 15rem;
+  top: 50%;
+  padding: 1rem 3rem;
+  transform: translate(50%, -50%);
+  color: #fff;
+  background-color: #FF655C;
+  border-radius: 5rem; }
+  .follow .follow-btn:focus {
+    outline: none; }
+  .follow .follow-btn_followed {
     background-color: #eee;
-    border: none;
-}
+    color: #999; }
+
+@media screen and (max-width: 1000px) {
+  .follow__item {
+    padding: 0;
+    margin-bottom: .5rem; }
+  .follow__avatar {
+    left: 1rem; }
+  .follow__username {
+    padding-left: 7rem; }
+  .follow .follow-btn {
+    right: 6rem; } }

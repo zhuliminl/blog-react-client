@@ -20,26 +20,28 @@ import Register from './components/Auth/Register';
 import Alert from './components/Alert/Alert';
 import Write from './components/Post/Write';
 import PostDetail from './components/Post/PostDetail';
+import Footer from './components/Footer/Footer';
 
 
 ReactDOM.render(
-    <Provider store={ store }>
-        <div className='container'>
-            <Router>
-                <Switch>
-                    <PublicRoute path='/login' component={ Login } />
-                    <PublicRoute path='/register' component={ Register } />
-                    <PrivateRoute path='/write' component={ Write } />
-                    <PrivateRoute path='/p/:id' component={ PostDetail } />
-                    <PrivateRoute path='/users/:id' component={ Home } />
-                    <PrivateRoute path='/' exact component={ Home } />
-                    {/* 如果将 / 和 /users/:id 指向相同的 Home 页面，则 / 的匹配情况下 match 数据需要按着 /users/:id 的 match 重写 */}
-                    <Redirect to='/' />
-                </Switch>
-            </Router>
-            <Alert/>
-        </div>
-    </Provider>
+        <Provider store={ store }>
+            <div>
+                <Router>
+                    <Switch>
+                        <PublicRoute path='/login' component={ Login } />
+                        <PublicRoute path='/register' component={ Register } />
+                        <PrivateRoute path='/write' component={ Write } />
+                        <PrivateRoute path='/p/:id' component={ PostDetail } />
+                        <PrivateRoute path='/users/:id' component={ Home } />
+                        <PrivateRoute path='/' exact component={ Home } />
+                        {/* 如果将 / 和 /users/:id 指向相同的 Home 页面，则 / 的匹配情况下 match 数据需要按着 /users/:id 的 match 重写 */}
+                        <Redirect to='/' />
+                    </Switch>
+                </Router>
+                <Alert/>
+                <Footer />
+            </div>
+        </Provider>
     , document.getElementById('root'));
 
 

@@ -1,0 +1,196 @@
+// 个人简介
+.profile {
+    position: relative;
+    padding: 6rem;
+    color: #999;
+    &::after {
+        position: absolute;
+        left: 50%;
+        bottom: 2rem;
+        content: '';
+        width: 90%;
+        transform: translate(-50%, 0);
+        height: .1rem;
+        background-color: #ddd;
+        border-radius: .2rem;
+    }
+    &__avatar {
+        position: absolute;
+        top: 5rem;
+        right: 7rem;
+        width: 16rem;
+        img {
+            border-radius: 50%;
+            box-shadow: #333;
+        }
+    }
+    &__aboutme {
+        margin-bottom: 5rem;
+        font-size: 2rem;
+    }
+    &__username {
+        margin-bottom: 3rem;
+        font-size: 5rem;
+        color: #444;
+    }
+    &__email {
+        display: block;
+        margin-bottom: 1rem;
+    }
+    &__follow-infor {
+        p {
+            display: inline-block;
+            margin-right: 3rem;
+        }
+
+    }
+    &__follow-btn, & .logout-btn {
+        position: absolute;
+        bottom: 6rem;
+        right: 15rem;
+        padding: 1rem 3rem;
+        background-color: #FF655C;      // 主题色
+        color: #fff;
+        border-radius: 5rem;
+        transform: translate(50%, 0);
+        &:focus {
+            outline: none;
+        }
+        &_followed {
+            color: #999;
+            background-color: inherit;
+            border: 1px solid #ddd;
+        }
+    }
+    & .logout-btn {
+        color: #999;
+        background-color: inherit;
+        border: 1px solid #ddd;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .profile {
+        padding: 1.5rem;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+        &__avatar {
+            width: 8rem;
+            top: 2rem;
+            right: 2rem;
+        }
+        &__username {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        &__aboutme {
+            margin-bottom: 3rem;
+            font-size: 1.4rem;
+        }
+        &__avatar {
+            top: 3rem;
+        }
+        &__follow-btn, & .logout-btn {
+            padding: .4rem 1rem;
+            right: 6rem;
+            bottom: 4rem;
+        }
+    }
+}
+
+
+
+
+
+
+// 关注
+.follow {
+    &__item {
+        position: relative;
+        padding: 1rem 3rem;
+        padding-left: 10rem;
+        margin-bottom: 1rem;
+        border-radius: .6rem;
+        color: #666;
+        &:hover {
+            transition: all 1s ease;
+            // background-color: #f5f6f7;
+            background-color: #eee;
+            // box-shadow: 0px 3px 8px 1px #d6d6d645;
+        }
+    }
+    &__avatar {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 6rem;
+        img {
+            width: 5rem;
+            border-radius: 50%;
+        }
+    }
+    &__username {
+        padding: 3rem;
+        font-size: 1.6rem;
+    }
+    & &-btn {
+        position: absolute;
+        right: 15rem;
+        top: 50%;
+        padding: 1rem 3rem;
+        transform: translate(50%, -50%);
+        color: #fff;
+        background-color: #FF655C;
+        border-radius: 5rem;
+        &:focus {
+            outline: none;
+        }
+        &_followed {
+            background-color: #eee;
+            color: #999;
+        }
+
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .follow {
+        &__item {
+            padding: 0;
+            margin-bottom: .5rem;
+        }
+        &__avatar {
+            left: 1rem;
+        }
+        &__username {
+            padding-left: 7rem;
+        }
+        & &-btn {
+            right: 6rem;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

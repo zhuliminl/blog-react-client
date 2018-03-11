@@ -53,8 +53,13 @@ export default (state= initState, action) => {
                 ...state
             }
         case userActionTypes.FOLLOWSUCCESS:
-            return {
-                ...state,
+            if(action.isFromProfile) {
+                return {
+                    ...state,
+                    isFollowing: true
+                }
+            } else {
+                return { ...state }
             }
         case userActionTypes.FOLLOWFAILURE:
             return {
@@ -64,11 +69,16 @@ export default (state= initState, action) => {
         // 取消关注别人
         case userActionTypes.UNFOLLOW:
             return {
-                ...state
+                ...state,
             }
         case userActionTypes.UNFOLLOWSUCCESS:
-            return {
-                ...state,
+            if(action.isFromProfile) {
+                return {
+                    ...state,
+                    isFollowing: false
+                }
+            } else {
+                return { ...state }
             }
         case userActionTypes.UNFOLLOWFAILURE:
             return {

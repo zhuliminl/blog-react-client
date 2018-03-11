@@ -43,15 +43,15 @@ class FollowCell extends React.Component {
         const { isFollowing } = this.state;                 // 注意 isFolowing 必须从 state 中取过来。因为它是依据逻辑动态变化的
 
         return (
-            <li className='follow_item'>
+            <li className='follow__item'>
                 <Link
                     onClick={ this.handleAvatarClick.bind(this) }
                     to={ `/users/${targetUserId}/posts` }
-                    className='follow_avatar'>
+                    className='follow__avatar'>
                     <img src={ 'http://secure.gravatar.com/avatar/' + avatarHash + '?s=80'  } alt="avatar"/>
                 </Link>
-                <p>{ username }</p>
-                <button className='follow_button' onClick={ this.handleFollowClick.bind(this) }>{ isFollowing ? '取消关注' : '关注' }</button>
+                <p className='follow__username'>{ username }</p>
+                <button className={ isFollowing ? 'follow-btn follow-btn_followed' : 'follow-btn' } onClick={ this.handleFollowClick.bind(this) }>{ isFollowing ? '取消关注' : '关注' }</button>
             </li>
         );
     }

@@ -4,11 +4,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import './style.css';
 
 import Profile from './components/User/Profile';
-// import Footer from './components/Footer/Footer';
 import Posts from './components/Posts/Posts';
 import Activities from './components/Posts/Activities';
 import Followings from './components/User/Followings';
@@ -20,10 +19,10 @@ const { updateCurrentUserId } = authActions;
 
 const Tabs = ({ ...propss, match }) => (
   <nav className='nav'>
-    <Link to={`${match.url}/posts`}>全部文章</Link>
-    <Link to={`${match.url}/activities`}>动态</Link>
-    <Link to={`${match.url}/followings`}>正在关注</Link>
-    <Link to={`${match.url}/followers`}>被关注</Link>
+    <NavLink className='nav__item' activeClassName='nav__item_active' to={`${match.url}/activities`}>动态</NavLink>
+    <NavLink className='nav__item' activeClassName='nav__item_active' to={`${match.url}/posts`}>文章</NavLink>
+    <NavLink className='nav__item' activeClassName='nav__item_active' to={`${match.url}/followings`}>正在关注</NavLink>
+    <NavLink className='nav__item' activeClassName='nav__item_active' to={`${match.url}/followers`}>被关注</NavLink>
   </nav>
 )
 
@@ -61,9 +60,9 @@ class Home extends React.Component {
                         : this.props.match;
 
         return (
-            <div>
+            <div className='container'>
                 <Profile match={ match }/>
-                <div>
+                <div className='main'>
                     <Tabs match={ match }/>
                     <Switch>
                         <Route exact path='/' component={ Posts }/>         {/* 我们想一登录用户首页就渲染文章 */}

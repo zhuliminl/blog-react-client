@@ -12,7 +12,7 @@ function flash(msgObj) {
         // 消息总是在三秒后关闭,并清空
         setTimeout(() => {
             dispatch(closeAlert());
-        }, 1000)
+        }, 3000)
     }
 }
 

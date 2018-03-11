@@ -1,4 +1,6 @@
 import React from 'react';
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
+import './style.css';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,48 +10,58 @@ import { authActions } from './_actions';
 const { register } = authActions;
 
 const Presentation = ({ ...props }) => (
-    <div>
+    <div className='auth__register'>
         <Header />
-        <form onSubmit={ props.handleSubmit }>
-            <div>
-                <label htmlFor="username">昵称</label>
-                <input
-                    onChange={ props.handleUsernameChange }
-                    type="text"
-                    name="username"
-                    placeholder="昵称"/>
-            </div>
-            <div>
-                <label htmlFor="email">邮箱</label>
-                <input
-                    onChange={ props.handleEmailChange }
-                    type="text"
-                    name="email"
-                    placeholder="请输入邮箱"/>
-            </div>
-            <div>
-                <label htmlFor="passwordForSure">密码</label>
-                <input
-                    onChange={ props.handlePasswordForSureChange }
-                    type="password"
-                    name="passwordForSure"
-                    placeholder="请输入密码"/>
-            </div>
-            <div>
-                <label htmlFor="password">确认密码</label>
-                <input
-                    onChange={ props.handlePasswordChange }
-                    type="password"
-                    name="password"
-                    placeholder=""/>
-            </div>
-            <div>
-                <input
-                    disabled={ props.isLoggingIn }
-                    type="submit"
-                    value={ props.isRegistering ? '正在注册' : '提交'}/>
-            </div>
-        </form>
+
+        <CSSTransitionGroup
+            transitionName="register__animate"
+            transitionAppearTimeout={500}
+            transitionAppear={true}
+            transitionEnter={false}
+            transitionLeave={false}>
+
+                <form className='register' onSubmit={ props.handleSubmit }>
+                    <div className='register__username'>
+                        <label htmlFor="username">昵称</label>
+                        <input
+                            onChange={ props.handleUsernameChange }
+                            type="text"
+                            name="username"
+                            placeholder="昵称"/>
+                    </div>
+                    <div className='register__email'>
+                        <label htmlFor="email">邮箱</label>
+                        <input
+                            onChange={ props.handleEmailChange }
+                            type="text"
+                            name="email"
+                            placeholder="输入邮箱"/>
+                    </div>
+                    <div className='register__password'>
+                        <label htmlFor="passwordForSure">密码</label>
+                        <input
+                            onChange={ props.handlePasswordForSureChange }
+                            type="password"
+                            name="passwordForSure"
+                            placeholder="输入密码"/>
+                    </div>
+                    <div className='register__password_confirm'>
+                        <label htmlFor="password">确认密码</label>
+                        <input
+                            onChange={ props.handlePasswordChange }
+                            type="password"
+                            name="password"
+                            placeholder="确认密码"/>
+                    </div>
+                    <div className='register__submit'>
+                        <input
+                            disabled={ props.isLoggingIn }
+                            type="submit"
+                            value={ props.isRegistering ? '正在注册' : '提交'}/>
+                    </div>
+                </form>
+
+        </CSSTransitionGroup>
     </div>
 );
 
@@ -110,6 +122,7 @@ class Register extends React.Component {
         })
     }
 
+
     validatePassword() {
         // 不止需要前后密码一致
         // 其他各种验证错误都需要一一考虑
@@ -126,7 +139,7 @@ class Register extends React.Component {
         return (
             token
                 ? <Redirect to='/' />
-                : <div>
+                : <div className='auth'>
                     <Presentation
                         isRegistering={ isRegistering }
                         handleSubmit={ this.handleSubmit.bind(this) }

@@ -1,0 +1,10 @@
+.footer {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    // background-color: #f5f6f7;
+    border-top: .1rem solid #eee;
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+    }
+}

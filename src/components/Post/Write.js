@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './style.css';
 
 import PostPreview from './PostPreview';
@@ -27,22 +27,21 @@ const { flash } = alertActions;
 
 
 const Header = ({...props, isPublished}) => (
-    <div>
-    <Link
-        to='/'
-        onClick={ props.handleBackClick }
-        >返回</Link>
-    <Link
-        to='/write'
-        className='write_publish'
-        onClick={ props.handleClick }
-        >
-        {
-            isPublished
-                ? '更新文章'
-                : '发布文章'
-        }
-    </Link>
+    <div className='write__nav'>
+        <button
+            className='write__back'
+            onClick={ props.handleBackClick }
+            >返回</button>
+        <button
+            className='write__publish'
+            onClick={ props.handleClick }
+            >
+            {
+                isPublished
+                    ? '更新文章'
+                    : '发布文章'
+            }
+        </button>
     </div>
 );
 
@@ -97,6 +96,7 @@ class Write extends React.Component {
 
     handleBackClick() {
         this.clearCurrentPostData();
+        this.props.history.goBack()
     }
     clearCurrentPostData() {
         const { dispatch } = this.props;
@@ -118,13 +118,13 @@ class Write extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header
-                    isPublished={ this.props.isPublished }
-                    handleClick={ this.handleClick.bind(this) }
-                    handleBackClick={ this.handleBackClick.bind(this) }
-                 />
+            <div className='main'>
                 <div className='write'>
+                    <Header
+                        isPublished={ this.props.isPublished }
+                        handleClick={ this.handleClick.bind(this) }
+                        handleBackClick={ this.handleBackClick.bind(this) }
+                     />
                     <PostEditor
                         title={ this.state.title }
                         body={ this.state.body }

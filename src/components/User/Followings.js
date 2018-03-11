@@ -17,7 +17,7 @@ class Followings extends React.Component {
         const { followings } = this.props;
         if(followings.length !== 0) {
             return (
-                <ul>
+                <ul className='follow'>
                     {
                         followings.map((user, i) => (
                                 <FollowCell
@@ -33,7 +33,7 @@ class Followings extends React.Component {
                 </ul>
             )
         } else {
-            return (<div>你还没有关注任何用户</div>);
+            return (<div className='nocontent'>还没有关注任何用户</div>);
         }
     }
 }

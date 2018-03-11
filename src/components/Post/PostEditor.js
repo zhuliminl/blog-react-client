@@ -1,9 +1,9 @@
 import React from 'react';
 
 const PostEditor = ({...props }) => (
-    <div className='write_editor'>
+    <div className='write__editor'>
         <form>
-            <div>
+            <div className='editor__title'>
                 <input
                     onChange={ props.handleTitleChange }
                     type="text"
@@ -11,7 +11,7 @@ const PostEditor = ({...props }) => (
                     value={ props.title }
                     placeholder="标题"/>
             </div>
-            <div>
+            <div className='editor__body'>
                 <textarea
                     onChange={ props.handleBodyChange }
                     name="body"

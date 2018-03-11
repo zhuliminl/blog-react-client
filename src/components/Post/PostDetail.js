@@ -16,23 +16,24 @@ const { updateCurrentUserId } = authActions;
 // 如果文章不是当前用户的则不能提供这个两个入口。暂时考虑不了这么多了
 // 注意这里的返回仍然要负责清除数据工作
 const Header = ({...props, isCurrentUser}) => (
-    <div>
-    <Link
-        to='/'
+    <div className='post__nav'>
+    <button
+        className='post__back'
         onClick={ props.handleBackClick }
-        >返回</Link>
+        >返回</button>
         {
             isCurrentUser
                         ?
                             <div>
                                 <Link
+                                    className='post__edit'
                                     to='/write'
                                     onClick={ props.handleEditorClick }
                                     >编辑</Link>
-                                <Link
-                                    to='/'
+                                <button
+                                    className='post__delete'
                                     onClick={ props.handleDeleteClick }
-                                    >删除</Link>
+                                    >删除</button>
                             </div>
                         : ''
 
@@ -51,6 +52,7 @@ class PostDetail extends React.Component {
 
     // 返回时需要清除本页的数据
     handleBackClick() {
+        this.props.history.goBack();
         this.clearCurrentPostData();
     }
     clearCurrentPostData() {
@@ -66,6 +68,7 @@ class PostDetail extends React.Component {
     // 后期考虑用上询问窗口
     handleDeleteClick() {
         const { dispatch, postId } = this.props;
+        this.props.history.goBack();
         dispatch(deletePost(postId));
     }
 
@@ -78,19 +81,19 @@ class PostDetail extends React.Component {
         const { title, body, createdAt } = this.props;          // 关于时间的格式，以后在优化
         const isCurrentUser = this.isCurrentUser();
         return (
-            <div>
+            <div className='main'>
                 <Header
                     isCurrentUser={ isCurrentUser }
                     handleBackClick={ this.handleBackClick.bind(this) }
                     handleEditorClick={ this.handleEditorClick.bind(this) }
                     handleDeleteClick={ this.handleDeleteClick.bind(this) }
                 />
-                <div className='post_detail'>
-                    <h1>{ title }</h1>
+                <div className='post'>
+                    <h1 className='post__title'>{ title }</h1>
                     <div className='post_infor'>
                         <p>创建时间<span>{ createdAt }</span></p>
                     </div>
-                    <ReactMarkdown source={ body } />
+                    <ReactMarkdown className='markdown' source={ body } />
                 </div>
             </div>
         );

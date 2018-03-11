@@ -8,14 +8,14 @@ import { Link } from 'react-router-dom';
 export default ({...props}) => {
     const { activity } = props;
     return (
-        <li className='activity_item'>
-            <div className='activity_avatar'>
-                <Link to={ '/users/' + activity.authorId }>
+        <li className='activity__item'>
+            <div className='activity__avatar'>
+                <Link to={ '/users/' + activity.authorIdf}>
                     <img src={ 'http://secure.gravatar.com/avatar/' + activity.avatarHash + '?s=256&d=identicon&r=g'  } alt="avatar"/>
                 </Link>
             </div>
-            <p>{ activity.author }<span>发布了文章</span></p>
-            <Link to={ '/p/' + activity.postId } onClick={ props.handleAvatarClick }>
+            <p className='activity__publish'>{ activity.author }<span>发布了文章</span></p>
+            <Link className='activity__title' to={ '/p/' + activity.postId } onClick={ props.handleAvatarClick }>
                 <h4>{ activity.title }</h4>
             </Link>
         </li>

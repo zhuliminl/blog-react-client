@@ -7,17 +7,16 @@ import { postsActions } from './_actions';
 const { fetchPosts } = postsActions;
 
 const AddPostButton = () => (
-    <div>
-        <Link to='/write'>添加新文章</Link>
-    </div>
+    <Link className='post-add' to='/write' title='点击添加文章'>
+        <div className='post-add__button'></div>
+    </Link>
 );
-
 
 class Posts extends React.Component {
     componentDidMount() {
         const { dispatch, match } = this.props;
         const targetUserId = match.params.id;
-        dispatch(fetchPosts(targetUserId))
+        dispatch(fetchPosts(targetUserId ? targetUserId : localStorage.getItem('userId'))); // 如果目标用户的id 拿不到，则肯定是在渲染当前登录用户
     }
 
     isCurrentUser() {
@@ -28,29 +27,32 @@ class Posts extends React.Component {
     render() {
         const { posts } = this.props;
         const isCurrentUser = this.isCurrentUser();
-
-        return (
-            <div>
-                { isCurrentUser ? <AddPostButton /> : '' }
-                <div>
-                    {
-                        posts.length !== 0                          // 如果文章数量不为空
-                            ? <ul>
-                                    {
-                                        posts.map((post, i) => (
-                                                <PostsCell
-                                                    key={i}
-                                                    post={ post }           // 文章就不在这里展开了，全都推过去
-                                                />
-                                            )
-                                        )
-                                    }
-                              </ul>
-                            : <div>对不起，你没有文章需要被显示</div>
-                    }
+        console.log(isCurrentUser)
+        if(posts.length !== 0) {
+            return (
+                <div className='posts'>
+                    { isCurrentUser ? <AddPostButton /> : '' }
+                    <ul className='post-entry'>
+                            {
+                                posts.map((post, i) => (
+                                        <PostsCell
+                                            key={i}
+                                            post={ post }           // 文章就不在这里展开了，全都推过去
+                                        />
+                                    )
+                                )
+                            }
+                      </ul>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div className='nocontent'>
+                    { isCurrentUser ? <AddPostButton /> : '' }
+                    <div>对不起，你没有文章需要被显示</div>
+                </div>
+            );
+        }
     }
 }
 

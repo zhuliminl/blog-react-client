@@ -1,4 +1,8 @@
 .footer {
-    position: fixed;
-    bottom: 0;
-}
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  border-top: .1rem solid #eee; }
+  @media screen and (max-width: 1000px) {
+    .footer {
+      width: 100%; } }

@@ -1,0 +1,214 @@
+
+// 文章列表
+.posts {
+    padding: 3rem;
+    padding-top: 0;
+
+}
+.post-add {
+    display: block;
+    position: relative;
+    margin: 1rem 3rem;
+    padding: 3rem;
+    margin-right: 80%;;
+    // border: .4rem solid #eee;
+    background-color: #eee;
+    border-radius: 5rem;
+    transition: all 1s ease;
+    transition-delay: 8s;
+    &:hover {
+        margin-right: 30%;
+        margin-right: 3rem;
+        // background-color: #f5f6f7;
+        border-radius: 1rem;
+        transition: all 1s ease;
+        transition-delay: .3s;
+        & ::before, & ::after {
+            transition: all 1s ease;
+        }
+    }
+    &__button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            background-color: #ddd;
+            border-radius: 1rem;
+            transform: translate(-50%, -50%);
+        }
+        &::before {
+            width: 3rem;
+            height: .5rem;
+        }
+        &::after {
+            width: .5rem;
+            height: 3rem;
+        }
+    }
+
+}
+
+
+.post-entry {
+    padding: 3rem;
+    padding-top: 0;
+    & * {
+        transition: all .3s ease;
+    }
+
+    & .entry {
+        padding: 3rem;
+        font-family: "Dosis-Medium", "PingFang SC", "Microsoft YaHei", Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        &:hover {
+            background-color: #eee;
+        }
+        // &:active {
+            // background-color: red;
+        // }
+        &__title {
+            margin: 0;
+            margin-bottom: 2rem;
+            font-size: 2.4rem;
+            color: #555;
+            &:hover {
+                color: #FF655C;
+            }
+        }
+        &__slug {
+            color: #999;
+        }
+    }
+}
+
+// 动态
+.activity {
+    padding: 6rem;
+    padding-top: 0;
+    & * {
+        transition: all .3s ease;
+    }
+    &__item {
+        padding: 3rem;
+        border-radius: 1rem;
+        &:hover {
+            background-color: #eee;
+        }
+
+    }
+    &__avatar {
+        width: 4rem;
+        img {
+            border-radius: 50%;
+        }
+    }
+    &__publish {
+        position: relative;
+        top: -3rem;
+        left: 5rem;
+        font-size: 1.4rem;
+        color: #666;
+        & span {
+            margin-left: .5rem;
+            color: #999;
+        }
+    }
+    &__title {
+        font-size: 2rem;            // 文章标题用了超级大的字号
+        // font-size: 2rem;
+        font-family: "Dosis-Medium", "PingFang SC", "Microsoft YaHei", Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+        color: #666;
+        :hover {
+            color: #FF655C;
+        }
+
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .posts, .activity {
+        padding: 0;
+    }
+    .post-add {
+        margin-top: 2rem;
+
+    }
+    .post-entry {
+        padding: 0;
+        margin: 0;
+        & .entry {
+            padding: 2rem 1.5rem;
+            padding-bottom: 1rem;
+            margin: 0;
+            margin-top: 1rem;
+            // box-shadow: 1px 3px #eee;
+            border-bottom: .1rem solid #ddd;
+            &__title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .activity {
+        &__item {
+            padding: 1rem 2rem ;
+            margin: 0;
+            border-bottom: .1rem solid #eee;
+        }
+
+        &__avatar {
+            width: 3rem;
+
+        }
+        &__publish {
+            font-size: 1.4rem;
+            top: -2.5rem;
+            left: 4rem;
+        }
+        &__title {
+            display: block;
+            position: relative;
+            top: -1.5rem;
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.5;
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

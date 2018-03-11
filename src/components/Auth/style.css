@@ -1,0 +1,82 @@
+.auth {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1.6rem;
+  color: #666;
+  background-color: #fff;
+  border-radius: .4rem;
+  box-shadow: 1px 3px 9px 3px #ddd;
+  overflow: hidden; }
+  .auth__header {
+    padding: 3rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: .1rem solid #eee; }
+    .auth__header a {
+      padding: 1rem 2rem; }
+      .auth__header a.active {
+        color: #007FFF; }
+  @media screen and (max-width: 700px) {
+    .auth {
+      width: calc(100% - 2rem);
+      top: 10%; }
+      .auth input[type='submit'] {
+        width: 60%; } }
+
+.login, .register {
+  position: relative;
+  padding: 5rem;
+  padding-top: 0;
+  padding-bottom: 2rem; }
+  .login > div, .register > div {
+    margin-top: 2rem; }
+    .login > div label, .register > div label {
+      margin-right: 1.5rem; }
+    .login > div input, .register > div input {
+      padding: 1rem;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: .2rem;
+      background-color: #f5f6f7; }
+      .login > div input::placeholder, .register > div input::placeholder {
+        color: #999; }
+      .login > div input:focus, .register > div input:focus {
+        outline: .05rem solid #eee; }
+  .login > div:last-child, .register > div:last-child {
+    text-align: center; }
+    .login > div:last-child input, .register > div:last-child input {
+      padding: 1rem 3rem;
+      font-size: 1.6rem;
+      border: .1rem solid #eee;
+      border-radius: 2rem; }
+      .login > div:last-child input:hover, .register > div:last-child input:hover {
+        background-color: #007fff;
+        color: #fff;
+        transition: all .3s ease-in; }
+
+.register > div:nth-child(3) {
+  margin-bottom: 8rem; }
+
+.register__password_confirm {
+  position: absolute;
+  width: 100%;
+  top: 15rem;
+  left: 1.9rem; }
+
+.login__animate-appear {
+  left: -22rem;
+  opacity: .1; }
+  .login__animate-appear-active {
+    opacity: 1;
+    left: 0rem;
+    transition: all .3s ease-out; }
+
+.register__animate-appear {
+  opacity: .1;
+  right: -22rem; }
+  .register__animate-appear-active {
+    opacity: 1;
+    right: 0rem;
+    transition: all .3s ease-out; }

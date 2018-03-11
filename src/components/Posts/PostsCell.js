@@ -8,10 +8,11 @@ import { Link } from 'react-router-dom';
 export default ({...props}) => {
     const { post } = props;
     return (
-        <li className='post_item'>
-            <h4>{ post.title }</h4>
-            <p>{ post.slug }</p>
-            <Link to={ `/p/${post.id}` }>阅读更多</Link>
+        <li className='entry'>
+            <Link title={ post.title } className='entry__link' to={ `/p/${post.id}` } >
+                <h3 className='entry__title'>{ post.title }</h3>
+                <p className='entry__slug'>{ post.slug }</p>
+            </Link>
         </li>
     );
 }

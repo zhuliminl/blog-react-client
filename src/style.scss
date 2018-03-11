@@ -1,0 +1,181 @@
+@font-face {
+    font-family: "Dosis-Regular";
+    src: url('./public/font/Dosis-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Dosis-Medium";
+    src: url('./public/font/Dosis-Medium.ttf');
+}
+
+@font-face {
+    font-family: "SFMono-Regular";
+    src: url('./public/font/SFMono-Regular.otf');
+}
+
+
+
+/* 定义一些程序级别的样式 */
+
+* {
+    margin: 0;
+    padding: 0;
+    /*盒子模型方便计算*/
+    box-sizing: border-box;
+}
+
+html {
+    /*全局设定*/
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #eee;
+    // font-family: "Dosis-Regular", "PingFang SC", "Microsoft YaHei", Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+    font-family: Helvetica, "Helvetica Neue", Tahoma, Arial, sans-serif;
+    font-size: 1.4rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+ul, li {
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    border: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+  overflow: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+#root > div {           // 始终页脚保持在底部
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+
+.container {
+    flex: 1;
+
+    display: flex;
+    flex-flow: column;
+
+    width: 100rem;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: .4rem;
+    background-color: #f5f6f7;
+    @media screen and (max-width: 1000px) {
+        width: 100vw;
+    }
+}
+
+.main {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+}
+
+.nocontent {
+    flex: 1;
+
+    text-align: center;
+    color: #999;
+    margin-top: 3rem;
+    background-color: #eee;
+    background: 50% 50% url('./public/svg/nocontent.svg') no-repeat;
+
+}
+
+
+
+
+
+
+
+// 导航样式
+.nav {
+    padding: 3rem;
+    padding-top: 0;
+    color: #666;
+    font-size: 1.6rem;
+    // background-color: #eee;
+    &__item {
+        display: inline-block;
+        padding: 1rem 1.5rem;
+        margin-left: 3rem;
+        border-radius: 2rem;
+        &_active {
+            color: #222;
+            color: #FF655C;
+            font-weight: bold;
+            background-color: #eee;
+            // background-color: #FF655C;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .nav {
+        // position: fixed;
+        padding: 1rem;
+        bottom: 0;
+        &__item {
+            margin-left: 1rem;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

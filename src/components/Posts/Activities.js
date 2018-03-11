@@ -20,7 +20,7 @@ class Activities extends React.Component {
         const { activities } = this.props;
         return (
             activities.length !== 0                          // 如果文章数量不为空
-                ? <ul>
+                ? <ul className='activity'>
                     {
                         activities.map((activity, i) => (
                                 <ActivitiesCell
@@ -32,7 +32,7 @@ class Activities extends React.Component {
                         )
                     }
                   </ul>
-                : <div>没有动态需要被显示</div>
+                : <div className='nocontent'>没有动态需要被显示</div>
         );
     }
 }

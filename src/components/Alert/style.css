@@ -1,14 +1,30 @@
+.alert_good, .alert_bad {
+  position: fixed;
+  left: 50vw;
+  padding: 2rem 3rem;
+  bottom: 4rem;
+  color: #eee;
+  border-radius: 3rem;
+  background-color: #999;
+  transform: translate(-50%, 0);
+  transition: all 1s ease; }
 
-.alert_good {
-    color: green;
-}
 .alert_bad {
-    color: red;
-}
+  background-color: #FF655C; }
 
-.alert_bad,
-.alert_good {
-    position: fixed;
-    right: 30px;
-    top: 0;
-}
+.alert-enter {
+  opacity: 0;
+  bottom: -3rem; }
+  .alert-enter-active {
+    bottom: 4rem;
+    opacity: .5;
+    transition: all .3s ease-in; }
+
+.alert-leave {
+  bottom: 0rem;
+  opacity: 1;
+  transition: all 1s ease-in; }
+  .alert-leave-active {
+    bottom: -10rem;
+    opacity: .7;
+    transition: all .2s ease-in; }

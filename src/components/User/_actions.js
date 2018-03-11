@@ -142,14 +142,14 @@ function fetchFollowers(id) {
 }
 
 
-function follow(userId, targetUserId) {
+function follow(userId, targetUserId, isFromProfile) {
     return dispatch => {
         dispatch(request())
         api.post(`/users/${userId}/followings/${targetUserId}`)
             .then(res => {
                 if(res.status === 200) {
                     const { message } = res.data;
-                    dispatch(success());
+                    dispatch(success(isFromProfile));
                     dispatch(flash({
                                 alertType: 'good',
                                 message
@@ -162,7 +162,7 @@ function follow(userId, targetUserId) {
                 const { response } = err;
                 if(response.status === 400) {
                         const { message } = response.data;
-                        dispatch(failure());            // 失败了，暂时就啥都不做吧。和发出请求一样，暂时保持为空
+                        dispatch(failure(isFromProfile));            // 失败了，暂时就啥都不做吧。和发出请求一样，暂时保持为空
                         dispatch(flash({ message }));   // 但是错误提示要发出来
                     }
                 }
@@ -174,28 +174,30 @@ function follow(userId, targetUserId) {
             type: userActionTypes.FOLLOW
         }
     }
-    function success() {
+    function success(isFromProfile) {
         return {
             type: userActionTypes.FOLLOWSUCCESS,
+            isFromProfile
         }
     }
-    function failure() {
+    function failure(isFromProfile) {
         return {
-            type: userActionTypes.FOLLOWFAILURE
+            type: userActionTypes.FOLLOWFAILURE,
+            isFromProfile
         }
     }
 
 
 }
 
-function unfollow(userId, targetUserId) {
+function unfollow(userId, targetUserId, isFromProfile) {
     return dispatch => {
         dispatch(request())
         api.delete(`/users/${userId}/followings/${targetUserId}`)
             .then(res => {
                 if(res.status === 200) {
                     const { message } = res.data;
-                    dispatch(success());
+                    dispatch(success(isFromProfile));
                     dispatch(flash(                                 // 发送关注成功的提示
                                 {
                                     alertType: 'good',
@@ -221,14 +223,16 @@ function unfollow(userId, targetUserId) {
             type: userActionTypes.UNFOLLOW
         }
     }
-    function success() {
+    function success(isFromProfile) {
         return {
-            type: userActionTypes.UNFOLLOWSUCCESS
+            type: userActionTypes.UNFOLLOWSUCCESS,
+            isFromProfile
         }
     }
-    function failure() {
+    function failure(isFromProfile) {
         return {
-            type: userActionTypes.UNFOLLOWFAILURE
+            type: userActionTypes.UNFOLLOWFAILURE,
+            isFromProfile
         }
     }
 }

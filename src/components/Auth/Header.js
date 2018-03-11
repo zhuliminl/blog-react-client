@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => (
-    <div>
-        <Link to='/login'>登录</Link>
-        <Link to='/register'>注册</Link>
+    <div className='auth__header'>
+        <NavLink to='/login'>登录</NavLink>
+        <NavLink to='/register'>注册</NavLink>
     </div>
 );
 
