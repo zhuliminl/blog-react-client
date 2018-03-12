@@ -85,14 +85,15 @@ class Register extends React.Component {
             email,
             password
         }
-        this.validatePassword();
+        // this.validatePassword();         // 交给后端用消息返回提示
         this.register(newUser);
     }
 
     register(newUser) {
         const { dispatch } = this.props;
         // dispatch(register(newUser));                   // 派遣登录动作
-        dispatch(register({ username: 'ssskdfj', email: 'xiaoshitou@gmail.com', password: 'xiaoshitou' }));                   // 测试一个新用户
+        // dispatch(register({ username: 'ssskdfj', email: 'xiaoshitou@gmail.com', password: 'xiaoshitou' }));                   // 测试一个新用户
+        dispatch(register(newUser));
     }
 
     handleUsernameChange(e) {
@@ -123,15 +124,15 @@ class Register extends React.Component {
     }
 
 
-    validatePassword() {
-        // 不止需要前后密码一致
-        // 其他各种验证错误都需要一一考虑
-        const { password, passwordForSure } = this.state;
-        if(password !== passwordForSure) {
-            console.log('两次密码输入不一致');
-        }
+    // validatePassword() {
+        // // 不止需要前后密码一致
+        // // 其他各种验证错误都需要一一考虑
+        // const { password, passwordForSure } = this.state;
+        // if(password !== passwordForSure) {
+            // console.log('两次密码输入不一致');
+        // }
 
-    }
+    // }
 
     render() {
         // const { isRegistering, token, userId } = this.props;

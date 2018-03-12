@@ -28,8 +28,7 @@
 .login, .register {
   position: relative;
   padding: 5rem;
-  padding-top: 0;
-  padding-bottom: 2rem; }
+  padding-top: 0; }
   .login > div, .register > div {
     margin-top: 2rem; }
     .login > div label, .register > div label {
@@ -80,3 +79,10 @@
     opacity: 1;
     right: 0rem;
     transition: all .3s ease-out; }
+
+.debug_guide {
+  position: absolute;
+  padding: 1rem;
+  font-size: 1.3rem;
+  bottom: 0rem;
+  color: #999; }

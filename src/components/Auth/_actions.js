@@ -151,11 +151,12 @@ function register(newUser) {
             .catch(err => {
                 const { response } = err;
                 if(response.status === 400) {
-                    const { message } = response.data;
+                    const { message, errorType } = response.data;
 
                     dispatch(failure(
                             {
-                                message
+                                message,
+                                errorType
                             }
                         )
                     );
@@ -187,7 +188,8 @@ function register(newUser) {
     function failure(store) {
         return {
             type: authActionTypes.REGISTER_FAILURE,
-            message: store.message
+            message: store.message,
+            errorType: store.errorType
         }
     }
 }

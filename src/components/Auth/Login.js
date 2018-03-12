@@ -42,7 +42,6 @@ const Presentation = ({ ...props }) => (
                         value={ props.isLoggingIn ? '正在登录' : '登录'}/>
                 </div>
             </form>
-
         </CSSTransitionGroup>
     </div>
 );
@@ -95,6 +94,7 @@ class Login extends React.Component {
                                     handleEmailChange={ this.handleEmailChange.bind(this) }
                                     handlePasswordChange={ this.handlePasswordChange.bind(this) }
                                 />
+                                <p className='debug_guide'>提示：可注册后使用注册的账号登录。为了方便查看和调试，可以直接点击登录进入默认账号</p>
                             </div>
         );
     }

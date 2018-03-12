@@ -50,10 +50,11 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 message: action.message,
+                errorType: action.errorType,
                 isRegistering: false,
                 token: '',
                 refreToken: '',
-                isLoggingIn: false
+                isLoggingIn: false,
             }
         // 注销动作未完成
 
