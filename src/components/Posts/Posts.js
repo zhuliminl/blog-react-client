@@ -27,7 +27,6 @@ class Posts extends React.Component {
     render() {
         const { posts } = this.props;
         const isCurrentUser = this.isCurrentUser();
-        console.log(isCurrentUser)
         if(posts.length !== 0) {
             return (
                 <div className='posts'>
